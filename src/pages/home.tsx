@@ -1,12 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import NavBar from "../components/navBar";
+import Movies from "../components/movies";
 
 const Home = () => {
   return (
     <>
       <NavBar></NavBar>
-      <div>HOME</div>
+      {/* <div>welcome to the movies website</div>
+      <div>HOME</div> */}
+      <Movies></Movies>
     </>
   );
 };
