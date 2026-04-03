@@ -16,10 +16,10 @@ const MovieCard = ({ movie, index }: { movie: Movie; index: number }) => {
           />
         </div>
         <h3 className="text-xl font-bold text-gray-800 tracking-tight">
-          {movie.original_title}
+          {movie.title}
         </h3>
         <span className="text-sm font-medium text-gray-400">
-          Rating {movie.vote_average}
+          Rating: {movie.vote_average}
         </span>
         <button className="mt-6 w-full rounded-xl bg-gray-900 py-2.5 text-sm font-bold text-white hover:cursor-default">
           <Link to={`/movie_details/${movie.id}`}>Movie Details</Link>

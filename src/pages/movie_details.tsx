@@ -3,12 +3,10 @@ import { useParams } from "react-router-dom";
 import NavBar from "../components/navBar";
 import axios from "axios";
 import type { Movie } from "../interfaces/Movie";
-
 const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     axios
       .get(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, {
@@ -22,7 +20,6 @@ const MovieDetails = () => {
       })
       .catch(() => setLoading(false));
   }, [id]);
-
   if (loading)
     return (
       <div className="h-screen bg-black flex items-center justify-center text-white text-2xl font-bold">
@@ -35,12 +32,9 @@ const MovieDetails = () => {
         Movie not found
       </div>
     );
-
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <NavBar />
-
-      {/* Hero Section with Backdrop */}
       <div
         className="relative w-full h-[60vh] bg-cover bg-center"
         style={{
@@ -49,11 +43,8 @@ const MovieDetails = () => {
       >
         <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/40 to-transparent" />
       </div>
-
-      {/* Content Container */}
       <div className="max-w-6xl mx-auto px-4 -mt-40 relative z-10">
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Poster */}
           <div className="shrink-0 mx-auto md:mx-0">
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -61,14 +52,11 @@ const MovieDetails = () => {
               className="w-64 rounded-xl shadow-2xl border-4 border-gray-800"
             />
           </div>
-
-          {/* Details */}
           <div className="flex flex-col justify-end pb-4">
             <h1 className="text-5xl font-extrabold mb-2">{movie.title}</h1>
             <p className="italic text-gray-400 text-lg mb-4">
               "{movie.tagline}"
             </p>
-
             <div className="flex flex-wrap gap-3 mb-6">
               {movie.genres?.map((genre) => (
                 <span
@@ -85,12 +73,10 @@ const MovieDetails = () => {
                 ★ {movie.vote_average.toFixed(1)}
               </span>
             </div>
-
             <h3 className="text-2xl font-bold mb-2">Overview</h3>
             <p className="text-gray-300 leading-relaxed text-lg max-w-3xl">
               {movie.overview}
             </p>
-
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-gray-800 pt-6">
               <div>
                 <p className="text-gray-500 text-sm uppercase">Release Date</p>
@@ -119,5 +105,4 @@ const MovieDetails = () => {
     </div>
   );
 };
-
 export default MovieDetails;
